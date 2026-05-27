@@ -1,15 +1,15 @@
 package com.example.todo.entity;
 
+import com.example.todo.enums.Priority;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-@Table(name = "todo")
+@Table(name = "Tbl_todo")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,13 +21,14 @@ public class Todo {
     @Column(nullable = false)
     private String description;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private int priority;
+    private Priority priority;
 
     @Column(nullable = false)
-    private boolean completed;
+    private boolean completed = false;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 }
