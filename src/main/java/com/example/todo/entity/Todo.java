@@ -13,7 +13,7 @@ import lombok.*;
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long todoId;
+    private Long todoId;
 
     @Column(nullable = false)
     private String title;
